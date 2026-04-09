@@ -11,7 +11,9 @@ app.use(createPinia())
 app.use(router)
 
 async function bootstrap() {
-  if (import.meta.env.DEV) {
+  const enableMsw = import.meta.env.VITE_ENABLE_MSW === 'true'
+
+  if (enableMsw) {
     const { worker } = await import('./mocks/browser')
     await worker.start({
       onUnhandledRequest: 'bypass',
