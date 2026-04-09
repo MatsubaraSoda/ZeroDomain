@@ -45,7 +45,7 @@ const isHeroTransparent = computed(
       :style="{ transitionDuration: `${duration}ms` }"
     />
     <!-- 主导航：品牌与主链接在左，工具区在右 -->
-    <nav :class="['relative z-10 mx-auto flex h-16 items-center justify-between px-32']">
+    <nav :class="['relative z-10 mx-auto flex h-16 items-center justify-between px-16']">
       <!-- 品牌与一级导航链接 -->
       <div :class="['flex items-center gap-10']">
         <a

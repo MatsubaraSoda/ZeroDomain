@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Show from '@/components/Product/Show.vue';
+</script>
 
 <template>
-  <div class="pt-16">
-    <h1 class="text-2xl font-semibold">Hello World!</h1>
+  <div class="min-h-[5000px] pt-16">
+    <Show />
   </div>
 </template>
 
