@@ -10,4 +10,14 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
-app.mount('#app')
+async function bootstrap() {
+  if (import.meta.env.DEV) {
+    const { worker } = await import('./mocks/browser')
+    await worker.start({
+      onUnhandledRequest: 'bypass',
+    })
+  }
+  app.mount('#app')
+}
+
+void bootstrap()
