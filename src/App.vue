@@ -1,11 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Navbar from './components/NavBar.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="min-h-screen bg-white text-gray-900">
+    <Navbar />
+    <main class="mx-auto h-[3000px] w-full max-w-[1200px] px-4 py-8">
+      
+    </main>
+  </div>
 </template>
 
 <style scoped></style>

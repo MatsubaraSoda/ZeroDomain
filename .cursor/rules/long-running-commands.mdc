@@ -1,0 +1,33 @@
+---
+description: 长期运行的 dev/服务类命令由开发者本地执行，Agent 默认不启动
+alwaysApply: true
+---
+
+# 长期运行命令（由开发者控制）
+
+以下会**持续占用终端、监听端口或常驻进程**的命令，**默认由开发者在本地自行执行**，Agent **不要**主动运行，除非用户**在本次对话中明确要求** Agent 代为启动（例如「帮我跑一下 dev」）。
+
+## 典型示例（非穷尽）
+
+- **前端**：`npm run dev`、`npm start`、`pnpm dev`、`yarn dev`、`vite`、`nuxt dev`、`next dev` 等
+- **Node 服务端**：`npm run server`、`npm run start:api`、`node server.js`、`nodemon ...`、`tsx watch ...` 等长期驻留命令
+- **其他**：`docker compose up`（无 `-d` 时）、任意阻塞式 watch / 热重载进程
+
+## npm 相关约定（本项目）
+
+本项目以 **npm** 为主。涉及依赖增删时，优先使用 `npm install <pkg>`、`npm uninstall <pkg>` 等标准命令维护 `package.json` 与 lockfile，避免手写依赖声明导致不一致。
+
+`npm run dev`、`npm run preview`、`npm run watch` 等长期运行命令，默认仍由开发者本地执行；仅在本次对话明确要求时才由 Agent 代跑。
+
+## Agent 可以做的
+
+- 一次性命令：`npm install`、`npm run build`、`npm run lint`、`npm test` 等可结束命令
+- 用户明确说「请启动 dev / 在后台跑 server」时，再按用户意图执行长期运行命令
+
+## 原则
+
+**持久化运行 = 默认交给开发者**；避免 Agent 占满终端、抢占端口；依赖变更优先通过 npm 命令完成，避免手写造成 lockfile 偏差。
+
+## 项目约定（VoiceChanger）
+
+本项目不包含 Python，主要使用 **npm/Node.js** 工作流。与 npm 相关的构建、测试和依赖管理按前述约定执行。
