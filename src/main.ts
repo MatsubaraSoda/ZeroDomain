@@ -11,7 +11,8 @@ app.use(createPinia())
 app.use(router)
 
 async function bootstrap() {
-  const enableMsw = import.meta.env.VITE_ENABLE_MSW === 'true'
+  const mswFlag = import.meta.env.VITE_ENABLE_MSW
+  const enableMsw = mswFlag != null ? mswFlag === 'true' : import.meta.env.DEV
 
   if (enableMsw) {
     const { worker } = await import('./mocks/browser')
