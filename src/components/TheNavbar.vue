@@ -31,7 +31,7 @@ const isHeroTransparent = computed(
     <!-- 背景层（默认态）：白底 / 暗色模式底 + 阴影；与 Hero 透明态通过 opacity 交叉淡入淡出 -->
     <div
       :class="[
-        'pointer-events-none absolute inset-0 bg-white shadow-sm transition-opacity dark:bg-neutral-900',
+        'pointer-events-none absolute inset-0 border-b border-gray-300 bg-white shadow-sm transition-opacity dark:border-neutral-700 dark:bg-neutral-900',
         isHeroTransparent ? 'opacity-0' : 'opacity-100'
       ]"
       :style="{ transitionDuration: `${duration}ms` }"
@@ -48,8 +48,8 @@ const isHeroTransparent = computed(
     <nav :class="['relative z-10 mx-auto flex h-16 items-center justify-between px-16']">
       <!-- 品牌与一级导航链接 -->
       <div :class="['flex items-center gap-10']">
-        <a
-          href="#"
+        <RouterLink
+          to="/"
           :class="[
             'font-semibold text-2xl tracking-tight transition-colors',
             isHeroTransparent ? 'text-white' : 'text-black dark:text-white'
@@ -57,9 +57,9 @@ const isHeroTransparent = computed(
           :style="{ transitionDuration: `${duration}ms` }"
         >
           零域 ZeroDomain
-        </a>
-        <a
-          href="#"
+        </RouterLink>
+        <RouterLink
+          to="/product/z-core"
           :class="[
             'transition-colors',
             isHeroTransparent ? 'text-white' : 'text-black dark:text-white'
@@ -67,7 +67,7 @@ const isHeroTransparent = computed(
           :style="{ transitionDuration: `${duration}ms` }"
         >
           产品
-        </a>
+        </RouterLink>
         <a
           href="#"
           :class="[
